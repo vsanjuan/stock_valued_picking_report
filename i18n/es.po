@@ -1,62 +1,205 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_valued_picking_report
+# 	* stock_valued_picking_report
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-20 10:01+0000\n"
-"PO-Revision-Date: 2015-04-20 10:01+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-02-04 07:52+0000\n"
+"PO-Revision-Date: 2017-02-04 09:26+0100\n"
+"Last-Translator: Salvador <salvador.sanjuan@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "% DISCOUNT"
+msgstr "% DESCUENTO"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "AMOUNT"
+msgstr "CANTIDAD"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "Barcode"
+msgstr "CÓDIGO DE BARRAS"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "CODE"
+msgstr "CÓDIGO"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "COMMENTS:"
+msgstr "OBSERVACIONES"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "Commitment Date"
+msgstr "FECHA COMPROMISO"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "Customer's Reference:"
+msgstr "REFERENCIA CLIENTE"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "DATE:"
+msgstr "FECHA ENTREGA"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "DELIVER ORDER:"
+msgstr "NÚMERO ALBARÁN"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "DELIVERY ADDRESS"
+msgstr "DIRECCIÓN ENVIO"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "DESCRIPTION"
+msgstr "DESCRIPCIÓN"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "Delivery Address:"
+msgstr "DIRECCIÓN ENVIO"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "Destination"
+msgstr "DESTION"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "Order (Origin)"
+msgstr "PEDIDO"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "PRICE"
+msgstr "PRECIO"
 
 #. module: stock_valued_picking_report
 #: model:ir.model,name:stock_valued_picking_report.model_res_partner
 msgid "Partner"
-msgstr "Empresa"
+msgstr "CLIENTE"
 
 #. module: stock_valued_picking_report
 #: model:ir.model,name:stock_valued_picking_report.model_stock_picking
 msgid "Picking List"
-msgstr "Albarán"
+msgstr "ALBARÁN"
+
+#. module: stock_valued_picking_report
+#: field:stock.move,sale_price_subtotal:0
+msgid "Price subtotal"
+msgstr "SUBTOTAL"
+
+#. module: stock_valued_picking_report
+#: field:stock.move,sale_description:0
+msgid "Sale Description"
+msgstr "DESCRIPCIÓN"
+
+#. module: stock_valued_picking_report
+#: field:stock.move,sale_discount:0
+msgid "Sale discount (%)"
+msgstr "% DESCUENTO"
+
+#. module: stock_valued_picking_report
+#: field:stock.move,sale_price_unit:0
+msgid "Sale price unit"
+msgstr "PRECIO UNIDAD"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "Scheduled Date"
+msgstr "FECHA PREVISTA"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "Signature:"
+msgstr "FIRMA"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "Source"
+msgstr "ORIGEN"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "State"
+msgstr "ESTADO"
 
 #. module: stock_valued_picking_report
 #: model:ir.model,name:stock_valued_picking_report.model_stock_move
 msgid "Stock Move"
-msgstr "Movimiento de existencias"
+msgstr "ALBARÁN"
 
 #. module: stock_valued_picking_report
-#: view:website:stock.report_picking
-msgid "Subtotal"
-msgstr "Subtotal"
+#: view:website:stock_valued_picking_report.report_picking
+msgid "Supplier Address:"
+msgstr "DIRECCIÓN PROVEEDOR"
 
 #. module: stock_valued_picking_report
-#: view:website:stock.report_picking
+#: view:website:stock_valued_picking_report.report_picking
+msgid "TOTAL"
+msgstr "TOTAL"
+
+#. module: stock_valued_picking_report
+#: view:stock.picking:stock_valued_picking_report.view_picking_form_valued
+#: view:website:stock_valued_picking_report.report_picking
 msgid "Taxes"
-msgstr "Impuestos"
+msgstr "IMPUESTOS"
 
 #. module: stock_valued_picking_report
-#: view:website:stock.report_picking
+#: view:website:stock_valued_picking_report.report_picking
 msgid "Total"
-msgstr "Total"
+msgstr "TOTAL"
 
 #. module: stock_valued_picking_report
-#: view:website:stock.report_picking
-msgid "Untaxed amount"
-msgstr "Base imponible"
+#: view:website:stock_valued_picking_report.report_picking
+msgid "Untaxed Amount"
+msgstr "TOTAL SIN IMPUESTOS"
+
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.external_layout_header
+#: view:website:stock_valued_picking_report.report_picking
+msgid "VAT:"
+msgstr "IVA"
 
 #. module: stock_valued_picking_report
 #: field:stock.picking,valued:0
 msgid "Valued"
-msgstr "Valorado"
+msgstr "VALOR"
 
 #. module: stock_valued_picking_report
 #: field:res.partner,valued_picking:0
 msgid "Valued picking"
-msgstr "Albarán valorado"
+msgstr "VALOR"
 
+#. module: stock_valued_picking_report
+#: view:website:stock_valued_picking_report.report_picking
+msgid "Warehouse Address:"
+msgstr "ALMACÉN"
+
+#. module: stock_valued_picking_report
+#: view:stock.picking:stock_valued_picking_report.view_picking_form_valued
+msgid "{'invisible': ['|', ('sale_id', '=', False),('valued', '=', False)]}"
+msgstr ""
+
+#. module: stock_valued_picking_report
+#: view:stock.picking:stock_valued_picking_report.view_picking_form_valued
+msgid "{'show_valued': bool(sale_id) and valued}"
+msgstr ""
