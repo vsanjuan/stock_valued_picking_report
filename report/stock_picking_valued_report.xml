@@ -128,7 +128,7 @@
 										<span>
 											<strong>DATE: </strong>
 										</span>
-										<span t-field="o.date" />
+										<span t-esc="time.strftime('%d/%m/%Y',time.strptime(o.date,'%Y-%m-%d %H:%M:%S'))"/>
 										<br />
 										<t t-if="o.sale_id">
 											<span>
