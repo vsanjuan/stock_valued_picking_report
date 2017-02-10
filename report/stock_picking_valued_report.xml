@@ -128,7 +128,7 @@
 										<span>
 											<strong>DATE: </strong>
 										</span>
-										<span t-esc="time.strftime('%d/%m/%Y',time.strptime(o.date,'%Y-%m-%d %H:%M:%S'))"/>
+										<span t-field="o.date" />
 										<br />
 										<t t-if="o.sale_id">
 											<span>
@@ -141,6 +141,7 @@
 										<span>
 											<strong>COMMENTS:</strong>
 										</span>
+										<span t-field="o.sale_id.note" />
 									</div>
 								</div>
 							</div>
@@ -367,37 +368,39 @@
 							</table>
 							<br />
 							<br />
-							<div class="row">
-								<div class="col-xs-4 pull-right">
-									<table class="table table-condensed">
-										<tr class="border-black">
-											<td>
-												<strong>Untaxed Amount</strong>
-											</td>
-											<td class="text-right">
-												<span t-field="o.amount_untaxed"
-													t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<strong>Taxes</strong>
-											</td>
-											<td class="text-right">
-												<span t-field="o.amount_tax" />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<strong>Total</strong>
-											</td>
-											<td class="text-right">
-												<span t-field="o.amount_total" />
-											</td>
-										</tr>
-									</table>
+							<t t-if="o.partner_id.valued_picking">
+								<div class="row">
+									<div class="col-xs-4 pull-right">
+										<table class="table table-condensed">
+											<tr class="border-black">
+												<td>
+													<strong>Untaxed Amount</strong>
+												</td>
+												<td class="text-right">
+													<span t-field="o.amount_untaxed"
+														t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<strong>Taxes</strong>
+												</td>
+												<td class="text-right">
+													<span t-field="o.amount_tax" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<strong>Total</strong>
+												</td>
+												<td class="text-right">
+													<span t-field="o.amount_total" />
+												</td>
+											</tr>
+										</table>
+									</div>
 								</div>
-							</div>
+							</t>
 							<div class="col-xs-4 pull-right"
 								style="position:absolute;bottom:-850px;border:solid 2px black;height:120px;">
 								<strong>Signature:</strong>
