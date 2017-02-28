@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
+	<template id="minimal_layout" inherit_id="report.minimal_layout">
+    <xpath expr="//t[@t-if='subst is True']" position="replace">
+    	<t t-if="subst is True">
+        <script>
+            function subst() {
+                var vars = {};
+                var x = document.location.search.substring(1).split('&amp;');
+                for (var i in x) {
+                    var z = x[i].split('=', 2);
+                    vars[z[0]] = unescape(z[1]);
+                }
+                var x=['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+                for (var i in x) {
+                    var y = document.getElementsByClassName(x[i]);
+                    for (var j=0; j&lt;y.length; ++j)
+                        y[j].textContent = vars[x[i]];
+                    }
+                var operations = {
+                    'not-first-page': function (elt) {
+                        elt.style.visibility = (vars.page === vars.frompage) ? "hidden" : "visible";
+                    },
+                    'not-last-page': function (elt) {
+                        elt.style.visibility = (vars.page === vars.topage) ? "hidden" : "visible";
+                    },
+                    'first-page': function (elt) {
+                        elt.style.visibility = (vars.page === vars.frompage) ? "visible" : "hidden";
+                    },
+                    'last-page': function (elt) {
+                        elt.style.visibility = (vars.page === vars.topage) ? "visible" : "hidden";
+                    },
+                };
+                for (var klass in operations) {
+                    var y = document.getElementsByClassName(klass);
+                    for (var j=0; j&lt;y.length; ++j)
+                        operations[klass](y[j]);
+                    }
+            }
+            </script>
+        </t>
+    </xpath>
+</template>
 		<record id="paperformat_a4_landscape" model="report.paperformat">
 			<field name="name">Sindel A4 Landscape</field>
 			<field name="default" eval="True" />
@@ -232,15 +273,16 @@
 												<span t-field="move.product_id.default_code" />
 											</td>
 											<t
-												t-if="o.picking_type_id.code == 'outgoing' and o.partner_id.valued_picking">
+												t-if="o.picking_type_id.code == 'outgoing'">
 												<td>
 													<span t-field="move.sale_description" />
 												</td>
 											</t>
 											<t
-												t-if="o.picking_type_id.code != 'outgoing' or not o.partner_id.valued_picking">
+												t-if="o.picking_type_id.code != 'outgoing'">
 												<td>
 													<span t-field="move.product_id" />
+													<!-- <span t-field="move.sale_description" /> -->
 												</td>
 											</t>
 											<td class="text-right">
@@ -319,6 +361,7 @@
 									<tr t-foreach="o.pack_operation_ids" t-as="pack_operation">
 										<td>
 											<span t-field="pack_operation.product_id" />
+											<!-- <span t-field="move.sale_description" /> -->
 											<t
 												t-if="not pack_operation.product_id and pack_operation.package_id">
 												<span t-field="pack_operation.package_id" />
@@ -401,8 +444,8 @@
 									</div>
 								</div>
 							</t>
-							<div class="col-xs-4 pull-right"
-								style="position:absolute;bottom:-850px;border:solid 2px black;height:120px;">
+							<div class="col-xs-4 pull-right last-page"
+								style="border:solid 2px black;height:120px;">
 								<strong>Signature:</strong>
 							</div>
 						</div>
