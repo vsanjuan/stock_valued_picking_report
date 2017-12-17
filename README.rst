@@ -14,8 +14,4 @@ https://github.com/odoomrp/odoomrp-wip
 Credits
 =======
 
-Contributors
-------------
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-* Antonio Espinosa <antonioea@antiun.com>
-* Oihane Crucelaegui <oihane.crucelaegi@avanzosc.es>
+

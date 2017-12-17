@@ -169,7 +169,9 @@
 										<span>
 											<strong>DATE: </strong>
 										</span>
+
 										<span t-field="o.date" t-field-options='{"format": "dd/MM/yyyy"}'/>
+
 										<br />
 										<t t-if="o.sale_id">
 											<span>
@@ -273,13 +275,13 @@
 												<span t-field="move.product_id.default_code" />
 											</td>
 											<t
-												t-if="o.picking_type_id.code == 'outgoing' and o.partner_id.valued_picking">
+												t-if="o.picking_type_id.code == 'outgoing'">
 												<td>
 													<span t-field="move.sale_description" />
 												</td>
 											</t>
 											<t
-												t-if="o.picking_type_id.code != 'outgoing' or not o.partner_id.valued_picking">
+												t-if="o.picking_type_id.code != 'outgoing'">
 												<td>
 													<!-- <span t-field="move.product_id" /> -->
 													<span t-field="move.sale_description" />
@@ -360,7 +362,12 @@
 								<tbody>
 									<tr t-foreach="o.pack_operation_ids" t-as="pack_operation">
 										<td>
-											<span t-field="pack_operation.product_id" />
+											<!-- <span t-field="pack_operation.product_id" /> -->
+											<span t-field="move.sale_description" />
+
+											<!--span t-field="pack_operation.product_id" /> -->
+											<!-- <span t-field="move.sale_description" /> -->
+
 											<t
 												t-if="not pack_operation.product_id and pack_operation.package_id">
 												<!--<span t-field="pack_operation.package_id" /> -->

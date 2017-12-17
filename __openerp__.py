@@ -25,8 +25,8 @@
 {
     "name": "Valued picking list",
     "version": "8.0.0.2.0",
-    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza",
-    "website": "www.serviciosbaeza.com",
+    "author": "Acelerem",
+    "website": "www.acelerem.com",
     "category": "Warehouse Management",
     "license": "GPL-3",
     "depends": [
