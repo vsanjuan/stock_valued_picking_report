@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
+	<template id="minimal_layout" inherit_id="report.minimal_layout">
+    <xpath expr="//t[@t-if='subst is True']" position="replace">
+    	<t t-if="subst is True">
+        <script>
+            function subst() {
+                var vars = {};
+                var x = document.location.search.substring(1).split('&amp;');
+                for (var i in x) {
+                    var z = x[i].split('=', 2);
+                    vars[z[0]] = unescape(z[1]);
+                }
+                var x=['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+                for (var i in x) {
+                    var y = document.getElementsByClassName(x[i]);
+                    for (var j=0; j&lt;y.length; ++j)
+                        y[j].textContent = vars[x[i]];
+                    }
+                var operations = {
+                    'not-first-page': function (elt) {
+                        elt.style.visibility = (vars.page === vars.frompage) ? "hidden" : "visible";
+                    },
+                    'not-last-page': function (elt) {
+                        elt.style.visibility = (vars.page === vars.topage) ? "hidden" : "visible";
+                    },
+                    'first-page': function (elt) {
+                        elt.style.visibility = (vars.page === vars.frompage) ? "visible" : "hidden";
+                    },
+                    'last-page': function (elt) {
+                        elt.style.visibility = (vars.page === vars.topage) ? "visible" : "hidden";
+                    },
+                };
+                for (var klass in operations) {
+                    var y = document.getElementsByClassName(klass);
+                    for (var j=0; j&lt;y.length; ++j)
+                        operations[klass](y[j]);
+                    }
+            }
+            </script>
+        </t>
+    </xpath>
+</template>
 		<record id="paperformat_a4_landscape" model="report.paperformat">
 			<field name="name">Sindel A4 Landscape</field>
 			<field name="default" eval="True" />
@@ -128,7 +169,7 @@
 										<span>
 											<strong>DATE: </strong>
 										</span>
-										<span t-field="o.date" />
+										<span t-field="o.date" t-field-options='{"format": "dd/MM/yyyy"}'/>
 										<br />
 										<t t-if="o.sale_id">
 											<span>
@@ -141,6 +182,7 @@
 										<span>
 											<strong>COMMENTS:</strong>
 										</span>
+										<span t-field="o.sale_id.note" />
 									</div>
 								</div>
 							</div>
@@ -171,10 +213,10 @@
 												<span t-field="o.state" />
 											</td>
 											<td>
-												<span t-field="o.date" />
+												<span t-field="o.date" t-field-options='{"format": "dd/MM/yyyy"}'/>
 											</td>
 											<td name="td_sched_date">
-												<span t-field="o.min_date" />
+												<span t-field="o.min_date" t-field-options='{"format": "dd/MM/yyyy"}'/>
 											</td>
 										</tr>
 									</tbody>
@@ -239,7 +281,8 @@
 											<t
 												t-if="o.picking_type_id.code != 'outgoing' or not o.partner_id.valued_picking">
 												<td>
-													<span t-field="move.product_id" />
+													<!-- <span t-field="move.product_id" /> -->
+													<span t-field="move.sale_description" />
 												</td>
 											</t>
 											<td class="text-right">
@@ -320,7 +363,8 @@
 											<span t-field="pack_operation.product_id" />
 											<t
 												t-if="not pack_operation.product_id and pack_operation.package_id">
-												<span t-field="pack_operation.package_id" />
+												<!--<span t-field="pack_operation.package_id" /> -->
+												<span t-field="move.sale_description" />
 											</t>
 										</td>
 										<td class="text-right">
@@ -367,39 +411,41 @@
 							</table>
 							<br />
 							<br />
-							<div class="row">
-								<div class="col-xs-4 pull-right">
-									<table class="table table-condensed">
-										<tr class="border-black">
-											<td>
-												<strong>Untaxed Amount</strong>
-											</td>
-											<td class="text-right">
-												<span t-field="o.amount_untaxed"
-													t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<strong>Taxes</strong>
-											</td>
-											<td class="text-right">
-												<span t-field="o.amount_tax" />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<strong>Total</strong>
-											</td>
-											<td class="text-right">
-												<span t-field="o.amount_total" />
-											</td>
-										</tr>
-									</table>
+							<t t-if="o.partner_id.valued_picking">
+								<div class="row">
+									<div class="col-xs-4 pull-right">
+										<table class="table table-condensed">
+											<tr class="border-black">
+												<td>
+													<strong>Untaxed Amount</strong>
+												</td>
+												<td class="text-right">
+													<span t-field="o.amount_untaxed"
+														t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<strong>Taxes</strong>
+												</td>
+												<td class="text-right">
+													<span t-field="o.amount_tax" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<strong>Total</strong>
+												</td>
+												<td class="text-right">
+													<span t-field="o.amount_total" />
+												</td>
+											</tr>
+										</table>
+									</div>
 								</div>
-							</div>
-							<div class="col-xs-4 pull-right"
-								style="position:absolute;bottom:-850px;border:solid 2px black;height:120px;">
+							</t>
+							<div class="col-xs-4 pull-right last-page"
+								style="border:solid 2px black;height:120px;">
 								<strong>Signature:</strong>
 							</div>
 						</div>
